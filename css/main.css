@@ -1,0 +1,16 @@
+form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+a {
+    display: block;
+}
+
+#word{
+    display: flex;
+}
+
+.clue{
+    width: 20px;
+}
