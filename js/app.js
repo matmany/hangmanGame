@@ -1,34 +1,44 @@
 function main() {
     const form = $('form');
     const keyboard = $('#keyboard');
-    let answer = { 'word': ' ' };
+    let game = { 'life': 6, 'word': ' ' };
+
     keyboard.empty();
     keyboard.append(createKeyboard());
 
     form.submit((e) => {
         let data = form.serializeArray();
+
         e.preventDefault();
-        wordHtmlString = createWord(data, answer);
+        wordHtmlString = createWord(data, game);
         $('#visual').empty();
         $('#visual').append(wordHtmlString);
-    })
+    });
 
-        $(document).on("click", '.key', function() {
-        console.log("A palavra: " + answer.word);
+    $(document).on("click", '.key', function () {
+        let found = false;
         const currentLetter = $(this).html();
-        for (let index = 0; index < answer.word.length; index++) {
-            if (currentLetter === answer.word[index]) {
+
+        for (let index = 0; index < game.word.length; index++) {
+            if (currentLetter === game.word[index]) {
                 $('#' + index).css('visibility', 'visible');
+                found = true;
             }
+        }
+
+        if (found === false)
+            game.life--;
+
+        if (game.life === 0) {
+            console.log("Game Over");
         }
         $(this).removeClass('key').addClass("none");
         $(this).css('background', 'grey');
-    })
+    });
 };
 
-function createWord(words, answer) {
+function createWord(words, game) {
 
-    //const wordStart='<div id="word">';
     let wordElement = '<div id="word">';
     const clue = '<div class="clue">';
     const letterStart = '<a class="letter"', letterEnd = '</a>';
@@ -36,19 +46,21 @@ function createWord(words, answer) {
     const divEnds = '</div>';
     let position = Math.floor(Math.random() * (words.length));
     let word = words[position].value.toLowerCase();
-    answer.word = word
-    //onsole.log(word);
-    //console.log(word.length);
-    //console.log("Letras:");
+    game.word = word;
 
     for (let i = 0; i < word.length; i++) {
-        //console.log(word[i]);
-        wordElement += clue;
-        wordElement += letterStart + 'id="' + i + '">';
-        wordElement += word[i];
-        wordElement += letterEnd;
-        wordElement += line;
-        wordElement += divEnds;
+        if (word[i] === " ") {
+            wordElement += "<a>  </a>";
+        }
+        else {
+            wordElement += clue;
+            wordElement += letterStart + 'id="' + i + '">';
+            wordElement += word[i];
+            wordElement += letterEnd;
+            wordElement += line;
+            wordElement += divEnds;
+        }
+
     }
     return wordElement;
 
@@ -68,7 +80,6 @@ function createKeyboard() {
 function checkLetter(letter) {
     for (let index = 0; index < array.length; index++) {
         const element = array[index];
-
     }
 
 }
