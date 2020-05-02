@@ -1,10 +1,11 @@
-form {
-    max-width: 500px;
+main {
+    max-width: 800px;
     margin: 0 auto;
 }
 
-a {
-    display: block;
+form {
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 #word{
@@ -13,4 +14,30 @@ a {
 
 .clue{
     width: 20px;
+}
+
+.clue a {
+    display: block;
+    visibility: hidden;
+}
+
+#keyboard{
+    font-size: 25px;
+    margin: 50px 0 0 0;
+}
+
+#keyboard a {
+    margin: 4px;
+    padding: 6px;
+    border-style: groove;
+    border-width: 2px;
+    
+}
+
+.key{
+    cursor: pointer;
+}
+
+.none {
+    cursor: none;
 }
