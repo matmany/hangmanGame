@@ -5,7 +5,7 @@ function main() {
     const collection = getCollection();
     const form = $('form');
     const keyboard = $('#keyboard');
-    let game = { 'life': 6, 'word': ' ' };
+    let game = { 'life': 6, 'word': ' ', 'option':'', 'tip':'', 'size':''};
 
     keyboard.empty();
     keyboard.append(createKeyboard());
@@ -27,39 +27,50 @@ function main() {
             if (currentLetter === game.word[index]) {
                 $('#' + index).css('visibility', 'visible');
                 found = true;
+                game.size--;
             }
         }
 
-        if (found === false)
+        if (found === false){
             game.life--;
-
-        if (game.life === 0) {
-            console.log("Game Over");
-            $('#menu').css('display', 'none');
-            $('#game').css('display', 'none');
-            $('#gameover').css('display', 'block');
+            if (game.life === 0) {
+                console.log("Game Over");
+                $('#menu').css('display', 'none');
+                $('#game').css('display', 'none');
+                $('#gameover').css('display', 'block');
+            }
+        } else{
+            if(game.size === 0){
+                //ganhou
+            }
+                
         }
+
         $(this).removeClass('key').addClass("none");
         $(this).css('background', 'grey');
     });
 
     $(document).on("click", '#gameover', function () {
         location.reload();
-    })
+    });
 
     $(document).on("click", '#play', function () {
-        /111111111111111111111111111111111111111111111111111111111111
+        let tipString = '<p>';
+        game.option = "play";
         $('#menu').css('display', 'none');
         $('#game').css('display', 'block');
         wordHtmlString = createWord(collection, game);
+        tipString += game.tip + "</p>";
         $('#visual').empty();
         $('#visual').append(wordHtmlString);
-
-    })
+        $('#tip').empty();
+        $('#tip').append(tipString);
+    });
 
     $(document).on("click", '#create', function () {
+        game.option = "create";
         location.reload();
-    })
+    });
 
 
 };
@@ -72,7 +83,17 @@ function createWord(words, game) {
     const line = '<label>_</label>';
     const divEnds = '</div>';
     let position = Math.floor(Math.random() * (words.length));
-    let word = words[position].value.toLowerCase();
+    let word;
+    if(game.option === 'play'){
+        //console.log("Palavra:" + words[position]);
+        word = words[position].name.toLowerCase();
+        game.tip = words[position].type;
+        game.size = words[position].length;
+    }
+    else {
+        word = words[position].value.toLowerCase();
+    }
+
     game.word = word;
 
     for (let i = 0; i < word.length; i++) {
