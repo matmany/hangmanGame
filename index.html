@@ -11,8 +11,11 @@
 </head>
 
 <body>
-    <main>
-        <div id="menu" class="row">
+    <main class="row">
+        <h1 class="col s12 center-align">The Hangman Game</h1>
+        <div id="menu" class="row center-align">
+            <a id="play" class="col btn-large green s6">Play</a>
+            <a id="create" class="col btn-large yellow s6">Create</a>
             <form action="index.html" class="col s12 center">
                 <input type="text" name="name1" id="">
                 <input type="text" name="name2" id="">
@@ -22,38 +25,17 @@
             </form>
         </div>
 
-        <div id="game">
+        <div id="game" class="col s12 center-align" >
             <div id="visual">
-                <div id="word">
-                    <div class="clue">
-                        <a class="letter" for="">t</a>
-                        <label class="line" for="">_</label>
-                    </div>
-                    <div class="clue">
-                        <a for="">e</a>
-                        <label for="">_</label>
-                    </div>
-                    <div class="clue">
-                        <a for="">s</a>
-                        <label for="">_</label>
-                    </div>
-                    <div class="clue">
-                        <a for="">t</a>
-                        <label for="">_</label>
-                    </div>
-                    <div class="clue">
-                        <a for="">e</a>
-                        <label for="">_</label>
-                    </div>
-                </div>
             </div>
 
-            <div id="keyboard">
-                <a>a</a>
-                <a>b</a>
-                <a>c</a>
+            <div id="keyboard" class="col s12">
             </div>
 
+        </div>
+        <div id="gameover" class="row center-align">
+            <h1 class="s12 center-align">Try Again?</h1>
+            <a class="waves-effect waves-light btn s12 center-align btn-large">restart</a>
         </div>
     </main>
     <script src="js/app.js"></script>

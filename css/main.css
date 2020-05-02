@@ -1,11 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
 main {
     max-width: 800px;
     margin: 0 auto;
+}
+h1 {
+    font-family: 'Rock Salt', cursive;
+}
+#game {
+    display: none;
 }
 
 form {
     max-width: 500px;
     margin: 0 auto;
+    display: none;
 }
 
 #word{
@@ -31,7 +39,7 @@ form {
     padding: 6px;
     border-style: groove;
     border-width: 2px;
-    
+    display: inline-flex;
 }
 
 .key{
@@ -39,5 +47,15 @@ form {
 }
 
 .none {
-    cursor: none;
+    cursor: default;
+}
+
+#gameover {
+    display: none;
+}
+
+.btn {
+    font-size: 50px;
+    height: 40px;
+    width: 400px;
 }
