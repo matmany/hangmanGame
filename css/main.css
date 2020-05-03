@@ -10,6 +10,8 @@ h1 {
     display: none;
 }
 
+
+
 form {
     max-width: 500px;
     margin: 0 auto;
@@ -17,7 +19,7 @@ form {
 }
 
 #word{
-    display: flex;
+    display: inline-flex;
 }
 
 .clue{
@@ -44,10 +46,20 @@ form {
 
 .key{
     cursor: pointer;
+    font-size: 30px;
+}
+
+.letter {
+    font-size: 30px;
 }
 
 .none {
     cursor: default;
+}
+
+#resposta {
+    font-size: 30px;
+    color: blue;
 }
 
 #gameover {
@@ -56,6 +68,10 @@ form {
 
 .btn {
     font-size: 50px;
-    height: 40px;
+    height: 60px;
     width: 400px;
+}
+
+.space {
+    width: 20px;
 }

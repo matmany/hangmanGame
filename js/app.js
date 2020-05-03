@@ -5,7 +5,7 @@ function main() {
     const collection = getCollection();
     const form = $('form');
     const keyboard = $('#keyboard');
-    let game = { 'life': 6, 'word': ' ', 'option':'', 'tip':'', 'size':''};
+    let game = { 'life': 6, 'word': ' ', 'option': '', 'tip': '', 'size': 0 };
 
     keyboard.empty();
     keyboard.append(createKeyboard());
@@ -20,32 +20,26 @@ function main() {
     });
 
     $(document).on("click", '.key', function () {
-        let found = false;
         const currentLetter = $(this).html();
+        const letterStatus = checkLetter(game, currentLetter);
 
-        for (let index = 0; index < game.word.length; index++) {
-            if (currentLetter === game.word[index]) {
-                $('#' + index).css('visibility', 'visible');
-                found = true;
-                game.size--;
-            }
-        }
-
-        if (found === false){
+        //Letra incorreta
+        if (letterStatus === false) {
             game.life--;
-            if (game.life === 0) {
-                console.log("Game Over");
-                $('#menu').css('display', 'none');
-                $('#game').css('display', 'none');
-                $('#gameover').css('display', 'block');
-            }
-        } else{
-            if(game.size === 0){
-                //ganhou
-            }
-                
+            console.log("Errado");
+        } else {
+            console.log("Acerto");
         }
 
+        //Fim de joga
+        if (game.life === 0 || game.size === 0) {
+            $('#menu').css('display', 'none');
+            $('#game').empty();
+            $('#game').append('<h2>Answer</h2><p id="resposta">' + game.word + '</p>');
+            $('#gameover').css('display', 'block');
+        }
+
+        console.log("Vida:" + game.life + "Resposta: " + game.word);
         $(this).removeClass('key').addClass("none");
         $(this).css('background', 'grey');
     });
@@ -71,24 +65,23 @@ function main() {
         game.option = "create";
         location.reload();
     });
-
-
 };
 
 function createWord(words, game) {
 
-    let wordElement = '<div id="word">';
     const clue = '<div class="clue">';
     const letterStart = '<a class="letter"', letterEnd = '</a>';
-    const line = '<label>_</label>';
+    const line = '<label>___</label>';
     const divEnds = '</div>';
+    let wordElement = '<div id="word">';
     let position = Math.floor(Math.random() * (words.length));
     let word;
-    if(game.option === 'play'){
+    if (game.option === 'play') {
         //console.log("Palavra:" + words[position]);
         word = words[position].name.toLowerCase();
         game.tip = words[position].type;
-        game.size = words[position].length;
+        game.size = words[position].name.length;
+        console.log("Length" + game.size);
     }
     else {
         word = words[position].value.toLowerCase();
@@ -98,7 +91,7 @@ function createWord(words, game) {
 
     for (let i = 0; i < word.length; i++) {
         if (word[i] === " ") {
-            wordElement += "<a>  </a>";
+            wordElement += '<a class="space"></a>';
         }
         else {
             wordElement += clue;
@@ -111,7 +104,6 @@ function createWord(words, game) {
 
     }
     return wordElement;
-
 };
 
 function createKeyboard() {
@@ -125,11 +117,16 @@ function createKeyboard() {
     return htmlString;
 }
 
-function checkLetter(letter) {
-    for (let index = 0; index < array.length; index++) {
-        const element = array[index];
+function checkLetter(game, letter) {
+    let found = false;
+    for (let index = 0; index < game.word.length; index++) {
+        if (letter === game.word[index]) {
+            $('#' + index).css('visibility', 'visible');
+            found = true;
+            game.size--;
+        }
     }
-
+    return found;
 }
 
 function getCollection() {
