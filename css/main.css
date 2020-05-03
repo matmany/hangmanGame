@@ -3,6 +3,13 @@ main {
     max-width: 800px;
     margin: 0 auto;
 }
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: none;
+}
+
 h1 {
     font-family: 'Rock Salt', cursive;
 }
@@ -10,13 +17,44 @@ h1 {
     display: none;
 }
 
-
-
-form {
-    max-width: 500px;
+#hangman {
+    width: 200px;
+    height: 300px;
     margin: 0 auto;
-    display: none;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
+
+.first {
+    background-image: url("../img/first.png");
+}
+
+.body5{
+    background-image: url("../img/head.png");
+}
+
+.body4{
+    background-image: url("../img/body.png");
+}
+
+.body3 {
+    background-image: url("../img/arm1.png");
+}
+
+.body2 {
+    background-image: url("../img/arm2.png");
+}
+
+.body1 {
+    background-image: url("../img/leg1.png");
+}
+
+.body0 {
+    background-image: url("../img/leg2.png");
+}
+
+
 
 #word{
     display: inline-flex;

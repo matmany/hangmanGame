@@ -5,6 +5,7 @@ function main() {
     const collection = getCollection();
     const form = $('form');
     const keyboard = $('#keyboard');
+    const hangmanImg = $('#hangman');
     let game = { 'life': 6, 'word': ' ', 'option': '', 'tip': '', 'size': 0 };
 
     keyboard.empty();
@@ -26,7 +27,9 @@ function main() {
         //Letra incorreta
         if (letterStatus === false) {
             game.life--;
+            hangmanImg.addClass("body"+game.life);
             console.log("Errado");
+
         } else {
             console.log("Acerto");
         }
@@ -34,7 +37,10 @@ function main() {
         //Fim de joga
         if (game.life === 0 || game.size === 0) {
             $('#menu').css('display', 'none');
-            $('#game').empty();
+            //$('#game').empty();
+            $('#tip').empty(); 
+            keyboard.empty();
+            $('#visual').empty(); 
             $('#game').append('<h2>Answer</h2><p id="resposta">' + game.word + '</p>');
             $('#gameover').css('display', 'block');
         }
