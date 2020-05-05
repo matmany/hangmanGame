@@ -98,6 +98,7 @@ function createWord(words, game) {
     for (let i = 0; i < word.length; i++) {
         if (word[i] === " ") {
             wordElement += '<a class="space"></a>';
+            game.size--;
         }
         else {
             wordElement += clue;
@@ -109,6 +110,7 @@ function createWord(words, game) {
         }
 
     }
+
     return wordElement;
 };
 
