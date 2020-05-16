@@ -83,7 +83,6 @@ function createWord(words, game) {
     let position = Math.floor(Math.random() * (words.length));
     let word;
     if (game.option === 'play') {
-        //console.log("Palavra:" + words[position]);
         word = words[position].name.toLowerCase();
         game.tip = words[position].type;
         game.size = words[position].name.length;
@@ -115,7 +114,7 @@ function createWord(words, game) {
 };
 
 function createKeyboard() {
-    const letters = "abcdefghijklmnopqrstuvwxyz";
+    const letters = "abcdefghijklmnopqrstuvwxyzáãéâê";
     const start = '<a class="key">', end = "</a>";
     let htmlString = '';
     for (let index = 0; index < letters.length; index++) {
